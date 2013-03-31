@@ -12,25 +12,24 @@
 # as well as in our logfile.
 # 
 
-
 # Configuration
-
+#
 # Exclude the following hosts (use spaces as seperator 
 # e.g. 'example.com' 'ws2.com')
 excludes=('munin')
-
+#
 # Logs
 logs='/var/log/apache2/{VHOST}-access.log'
-
+#
 # Public HTML Folders
 public_html='/var/www/{VHOST}/public_html'
-
+#
 # Webalizer output folder (within each vhosts public_html)
 webalizer_output='webalizer'
-
+#
 # Debugging (Uncomment to see console output)
 debug='true'
-
+#
 #
 
 logs_before=$(echo $logs | sed 's/{VHOST.*//g')
@@ -59,11 +58,13 @@ for i in $logsArr; do
     fi
   done
 
-  # check if '$exclude' is set (means the vhost is in our exclude list and we 
+  # Check if '$exclude' is set (means the vhost is in our exclude list and we 
   # shouldn't process the logfile any further)
   if [ -n "${exclude+x}" ]; then
     e "--> vhost \"$vhost\" is in excludes array"
     e "--> stop"
+
+  # Fire the 'webalizer' command
   else
     e "--> go on"
     public_html_output=$(echo $public_html | sed "s/{VHOST}/$vhost/g")
@@ -72,6 +73,7 @@ for i in $logsArr; do
     webalizer -n $vhost -o $public_html_output $logs_input
   fi
 
+  # Unset vars for next loop
   unset exclude
   unset vhost
 done
