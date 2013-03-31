@@ -67,7 +67,7 @@ for i in $logsArr; do
     public_html_output=$(echo $public_html | sed "s/{VHOST}/$vhost/g")
     public_html_output=$(echo $public_html_output/$webalizer_output)
     logs_input=$(echo $logs | sed "s/{VHOST}/$vhost/g")
-    echo "webalizer -n $vhost -o $public_html_output $logs_input"
+    webalizer -n $vhost -o $public_html_output $logs_input
   fi
 
   unset exclude
