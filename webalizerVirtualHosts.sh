@@ -1,17 +1,13 @@
 #!/bin/bash
 
 #
-# Shell Script to process multiple hosts 
-# individually using the 'webalizer' command.
+# Shell Script to process multiple hosts individually using the 'webalizer' command.
 # 
-# In order to make this Script work, we need 
-# to generate seperate 'access.log's for our
-# vhosts. 
+# In order to make this Script work, we need to generate seperate 'access.log's for 
+# our vhosts. We assume that the name of the vhosts occur in our public_html folder 
+# as well as in our logfile.
 # 
-# We assume that the name of the vhosts occur 
-# in our public_html folder as well as in our 
-# logfile.
-# 
+
 
 # Configuration
 
@@ -31,9 +27,7 @@ webalizer_output='webalizer'
 # Debugging (Uncomment to see console output)
 debug='true'
 
-###
-
-
+#
 
 logs_before=$(echo $logs | sed 's/{VHOST.*//g')
 logs_after=$(echo $logs | sed 's/.*VHOST}//g')
