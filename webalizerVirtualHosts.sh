@@ -13,23 +13,23 @@
 # 
 
 # Configuration
-#
+
 # Exclude the following hosts (use spaces as seperator 
 # e.g. 'example.com' 'ws2.com')
 excludes=('munin')
-#
+
 # Logs
 logs='/var/log/apache2/{VHOST}-access.log'
-#
+
 # Public HTML Folders
 public_html='/var/www/{VHOST}/public_html'
-#
+
 # Webalizer output folder (within each vhosts public_html)
 webalizer_output='webalizer'
-#
+
 # Debugging (Uncomment to see console output)
 debug='true'
-#
+
 #
 
 logs_before=$(echo $logs | sed 's/{VHOST.*//g')
